@@ -10,17 +10,21 @@ body {
 .container {
     width: 100%;
     max-width: 600px;
-    text-align: center;
 }
 
-h1 { color: #8e1c33; } /* Dünya Kupası Rengi */
+h1 { 
+    color: #8e1c33; 
+    text-align: center;
+    margin-bottom: 30px;
+}
 
 .stats-card {
     background: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+    text-align: center;
 }
 
 .progress-bar {
@@ -39,6 +43,40 @@ h1 { color: #8e1c33; } /* Dünya Kupası Rengi */
     font-weight: bold;
 }
 
+/* Yeni Eklenen Giriş Paneli Tasarımı */
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.input-section input, .input-section select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.input-section button {
+    background: #8e1c33;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.input-section button:hover {
+    background: #6b1426;
+}
+
 .sections {
     display: flex;
     gap: 20px;
@@ -47,10 +85,34 @@ h1 { color: #8e1c33; } /* Dünya Kupası Rengi */
 .card {
     background: white;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
     flex: 1;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #f4f4f9;
+    padding-bottom: 10px;
 }
 
 ul { list-style: none; padding: 0; }
-li { padding: 5px 0; border-bottom: 1px solid #eee; }
+
+li { 
+    padding: 10px; 
+    border-bottom: 1px solid #eee; 
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Silme Butonu Tasarımı */
+.delete-btn {
+    color: #ff4d4d;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0 5px;
+}
+.delete-btn:hover {
+    color: #cc0000;
+}
