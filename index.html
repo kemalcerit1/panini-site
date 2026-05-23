@@ -3,95 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panini World Cup 2026 - Koleksiyonum</title>
+    <title>Panini WC 2026 - Koleksiyon Kontrolü</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Panini World Cup 2026</h1>
-        
-        <div class="stats-card">
-            <h2>Albüm Tamamlanma Oranı</h2>
-            <div class="progress-bar">
-                <div class="progress" style="width: 71%;">%71</div>
+        <div class="country-header tr-theme">
+            <div class="flag-info">
+                <img src="https://flagcdn.com/w80/tr.png" alt="Türkiye">
+                <span class="country-name">Türkiye</span>
             </div>
-            <p>Hedef: %100 | Kalan: %29</p>
+            <div class="progress-info">
+                <span class="progress-percent">75%</span>
+            </div>
         </div>
 
-        <div class="input-section">
-            <input type="text" id="card-number" placeholder="Örn: TUR5, ARG10, BRA1">
-            <select id="card-type">
-                <option value="missing">Eksik Kart</option>
-                <option value="duplicate">Takaslık (Duplicate)</option>
-            </select>
-            <button onclick="addCard()">Listeye Ekle</button>
-        </div>
-
-        <div class="sections">
-            <div class="card">
-                <h3>Eksik Kartlarım</h3>
-                <ul id="missing-list"></ul>
+        <div class="album-grid">
+            
+            <div class="card status-owned"><span>TUR</span> 1<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 2<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 3<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 4<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 5<div class="tick">✓</div></div>
+            
+            <div class="card status-missing"><span>TUR</span> 6</div>
+            <div class="card status-missing"><span>TUR</span> 7</div>
+            
+            <div class="card status-owned has-duplicate">
+                <span>TUR</span> 8
+                <div class="duplicate-tag">+1</div>
+                <div class="tick">✓</div>
             </div>
             
-            <div class="card">
-                <h3>Takaslıklar</h3>
-                <ul id="duplicate-list"></ul>
-            </div>
+            <div class="card status-owned"><span>TUR</span> 9<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 10<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 11<div class="tick">✓</div></div>
+            
+            <div class="card status-missing"><span>TUR</span> 12</div>
+            
+            <div class="card status-missing"><span>TUR</span> 13</div>
+            
+            <div class="card status-owned"><span>TUR</span> 14<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 15<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 16<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 17<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 18<div class="tick">✓</div></div>
+            <div class="card status-owned"><span>TUR</span> 19<div class="tick">✓</div></div>
+            
+            <div class="card status-missing"><span>TUR</span> 20</div>
+            
         </div>
+
+        <p class="summary-text">Panini World Cup 2026 - Dijital Kontrol Listesi</p>
     </div>
-
-    <script>
-        // Ülke kodları ve iki harfli bayrak karşılıkları haritası
-        const countryCodes = {
-            'TUR': 'tr', 'ARG': 'ar', 'BRA': 'br', 'GER': 'de', 
-            'FRA': 'fr', 'ITA': 'it', 'ESP': 'es', 'ENG': 'gb', 
-            'POR': 'pt', 'NED': 'nl', 'BEL': 'be', 'CRO': 'hr',
-            'USA': 'us', 'MEX': 'mx', 'CAN': 'ca', 'JPN': 'jp',
-            'KOR': 'kr', 'SEN': 'sn', 'MAR': 'ma', 'URU': 'uy',
-            'COL': 'co', 'CHI': 'cl', 'SWE': 'se', 'SUI': 'ch'
-            // Diğer ülkeleri de buraya aynı mantıkla ekleyebiliriz Kemo
-        };
-
-        function addCard() {
-            const numberInput = document.getElementById('card-number');
-            const typeSelect = document.getElementById('card-type');
-            
-            // Girilen metni al ve tamamen büyük harfe çevir (örn: tur5 -> TUR5)
-            let cardValue = numberInput.value.trim().toUpperCase();
-
-            if (cardValue === '') {
-                alert('Lütfen bir kart kodu girin!');
-                return;
-            }
-
-            // İlk 3 harfi ayıkla (Ülke kodu için)
-            const prefix = cardValue.substring(0, 3);
-            
-            // Bayrak URL'sini belirle (Eğer kod listede yoksa dünya kupası logosu/varsayılan ikon koyar)
-            let flagHtml = '';
-            if (countryCodes[prefix]) {
-                const flagCode = countryCodes[prefix];
-                flagHtml = `<img src="https://flagcdn.com/w40/${flagCode}.png" class="country-flag" alt="${prefix}">`;
-            } else {
-                // Bilinmeyen bir kod girilirse varsayılan küçük bir dünya ikonu basar
-                flagHtml = `<span class="default-icon">⚽</span>`;
-            }
-
-            let listId = typeSelect.value === 'missing' ? 'missing-list' : 'duplicate-list';
-            const targetList = document.getElementById(listId);
-
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <div class="card-info">
-                    ${flagHtml}
-                    <span class="card-code">${cardValue}</span>
-                </div>
-                <span class="delete-btn" onclick="this.parentElement.remove()">✕</span>
-            `;
-            
-            targetList.appendChild(li);
-            numberInput.value = '';
-        }
-    </script>
 </body>
 </html>
